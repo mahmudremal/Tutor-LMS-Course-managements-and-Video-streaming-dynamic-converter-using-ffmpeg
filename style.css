@@ -1,0 +1,46 @@
+/**
+  Theme Name: Divi Child
+  Theme URI: https://www.futurewordpress.com/
+  Description: This is a Divi child theme.
+  Author: Remal Mahmud
+  Author URI: https://www.futurewordpress.com/
+  Author Email: info@futurewordpress.com
+  Template: Divi
+  Version: 1.0
+  Domain: fwp-divi-child-seojaws
+  Text Domain: fwp-divi-child-seojaws
+  License: GNU General Public License v2 or later
+  License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
+
+#et-main-area #main-content #content-area #left-area .main_title {
+  font-size: 30px;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul {
+  list-style: none;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li {
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: relative;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li:before {
+  font-family: ETmodules;
+  content: "[";
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  left: -20px;
+  font-weight: 800;
+  width: 12px;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li a {
+  cursor: pointer;
+  text-transform: capitalize;
+}

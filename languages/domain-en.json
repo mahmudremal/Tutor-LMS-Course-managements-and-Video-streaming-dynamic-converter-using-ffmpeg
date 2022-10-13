@@ -1,0 +1,53 @@
+/usr/bin/ffmpeg -i '1. Digital Marketing Ultimate Bundle Intro.mp4' -b:v 5000k -bufsize 5000k '1. Digital Marketing Ultimate Bundle Intro-1080.mp4'
+
+
+/usr/bin/ffmpeg -i '1. Are these hurdles killing your content creation.mp4' -b:v 700k -bufsize 700k '1. Are these hurdles killing your content creation-360.mp4'
+
+
+/usr/bin/ffmpeg -i '1. Are these hurdles killing your content creation.mp4' -vcodec libx265  -crf 18 '1. Are these hurdles killing your content creation-18.mp4'
+-b 800k
+
+
+cd lessons/Content Marketing Growth Blueprint/2. Content Creation Hurdles
+
+du -sh 1.\ Are\ these\ hurdles\ killing\ your\ content\ creation.mp4 1.\ Are\ these\ hurdles\ killing\ your\ content\ creation-18.mp4 1.\ Are\ these\ hurdles\ killing\ your\ content\ creation-23.mp4 1.\ Are\ these\ hurdles\ killing\ your\ content\ creation-28.mp4
+
+
+var bits = [];
+var select = document.getElementById( 'bits' ).options;
+for( i = 0; i < options.length; i++ ) {
+  bits.push( {
+    value: select[ i ].value,
+    label: select[ i ].text
+  } );
+}
+console.log( bits );
+
+
+
+
+for side: du -sh [src]
+
+
+// https://unix.stackexchange.com/questions/28803/how-can-i-reduce-a-videos-size-with-ffmpeg
+// https://slhck.info/video/2017/02/24/crf-guide.html
+/usr/bin/ffmpeg -i '9. Some More Useful Keyword Tools.mp4' -vcodec libx265  -crf 28 '9. Some More Useful Keyword Tools-144.mp4'
+
+/usr/bin/ffmpeg -i '/home/seojaws/public_html/demo/lessons/SEO Made Simple The Complete Blueprint to SEO Success/3. The Basis of Your SEO Campaign Keyword Research/1. Introduction.mp4' -vcodec libx265  -crf 28 '/home/seojaws/public_html/demo/wp-content/uploads/fwp-converted-videos/SEO Made Simple The Complete Blueprint to SEO Success/3. The Basis of Your SEO Campaign Keyword Research/1. Introduction-720.mp4'
+
+
+
+
+
+/home/seojaws/public_html/demo/wp-content/uploads/fwp-converted-videos/SEO\ Made\ Simple\ The\ Complete\ Blueprint\ to\ SEO\ Success/3.\ The\ Basis\ of\ Your\ SEO\ Campaign\ Keyword\ Research
+
+/public_html/demo/wp-content/themes/divi-child/inc
+
+
+du -sh 10.\ Step\ 3\ –\ Filter-480.mp4 1.\ Introduction-720.mp4 11.\ Filter\ Keywords\ Better\ and\ Faster\ With\ KWFinder-480.mp4 2.\ What\ Makes\ a\ Good\ Keyword-480.mp4 13.\ Competitor\ Keyword\ Research-480.mp4 3.\ The\ Key\ to\ Success\ Longtail\ Keywords-480.mp4 15.\ Step\ 2\ –\ Finding\ Successful\ Keywords-480.mp4 5.\ Traditional\ Keyword\ Research-480.mp4 18.\ A\ Smart\ Strategy\ for\ Faster\ SEO\ Results-480.mp4 7.\ Step\ 2\ –\ Find\ Related\ Keywords\ With\ Tools-480.mp4 1.\ Introduction-1080.mp4 9.\ Some\ More\ Useful\ Keyword\ Tools-1080.mp4 1.\ Introduction-480.mp4 9.\ Some\ More\ Useful\ Keyword\ Tools-480.mp4
+
+
+du -sh /home/seojaws/public_html/demo/lessons/SEO\ Made\ Simple\ The\ Complete\ Blueprint\ to\ SEO\ Success/3.\ The\ Basis\ of\ Your\ SEO\ Campaign\ Keyword\ Research/1.\ Introduction.mp4
+
+
+/usr/bin/ffmpeg -i input -b 1200k -minrate 1200k -maxrate 1200k -bufsize 1200k -ab 64k -vcodec libx264 -acodec aac -strict -2 -ac 2 -ar 44100 -s 320x240 -y output.mp4
