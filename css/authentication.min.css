@@ -1,0 +1,76 @@
+
+/* Styling for product single page to force register */
+.fwp-body.fwp-single-product-hide .ppc-button-wrapper,
+.fwp-body.fwp-single-product-hide form.cart {
+  display: none;
+}
+
+
+
+/* Sing up model */
+.sign_up_modal::before { background-color: rgba(34, 34, 34, 0.9); inset: 0px; content: ""; position: absolute; }
+.modal-backdrop { display: none; }
+.sign_up_modal .modal-header { background-color: rgb(130, 180, 64); border-radius: 50%; border: none; height: 50px; position: absolute; right: -20px; text-align: center; top: -20px; width: 50px; z-index: 1; }
+.sign_up_modal .modal-header button.close { margin-top: -5px; margin-right: 0px; margin-left: 4px; opacity: 1; padding: 0px; }
+.sign_up_modal .modal-header button.close span { color: rgb(255, 255, 255); }
+.sign_up_tab li.nav-item { text-align: center; width: 50%; }
+.sign_up_tab li.nav-item .nav-link { background-color: rgb(242, 242, 242); height: 70px; line-height: 65px; margin: 0px; padding: 0px; }
+.sign_up_tab li.nav-item .nav-link.active { background-color: rgb(255, 255, 255); }
+
+
+/* singup model nav link */
+.sign_up_modal::before { background-color: rgba(34, 34, 34, 0.9); inset: 0px; content: ""; position: absolute; }
+.modal-backdrop { display: none; }
+.sign_up_modal .modal-header { background-color: rgb(130, 180, 64); border-radius: 50%; border: none; height: 50px; position: absolute; right: -20px; text-align: center; top: -20px; width: 50px; }
+.sign_up_modal .modal-header button.close { margin-top: -5px; margin-right: 0px; margin-left: 4px; opacity: 1; padding: 0px; }
+.sign_up_modal .modal-header button.close span { color: rgb(255, 255, 255); }
+.sign_up_tab li.nav-item { text-align: center; width: 50%; }
+.sign_up_tab li.nav-item .nav-link { background-color: rgb(242, 242, 242); height: 70px; line-height: 65px; margin: 0px; padding: 0px; }
+.sign_up_tab li.nav-item .nav-link.active { background-color: rgb(255, 255, 255); }
+/* singup model form settings */
+.login_form { background-color: rgb(255, 255, 255); padding: 40px 40px 0px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; border-radius: 4px; }
+.login_form .heading { margin-bottom: 40px; }
+.login_form .form-control { border-radius: 4px; color: rgb(127, 127, 127); height: 50px; margin-bottom: 20px; }
+.login_form .form-control:focus { box-shadow: none; }
+.login_form .form-check-input { height: 17px; width: 17px; }
+.login_form button { border-radius: 4px; height: 50px; margin-bottom: 40px; }
+.login_form .btn-log { height: 55px; }
+.sign_up_form { background-color: rgb(255, 255, 255); padding: 40px 40px 0px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; border-radius: 4px; }
+.sign_up_form .heading { margin-bottom: 40px; }
+.sign_up_form .form-control { border-radius: 4px; color: rgb(127, 127, 127); height: 50px; margin-bottom: 20px; }
+.sign_up_form .form-control:focus { box-shadow: none; }
+.sign_up_form .form-check-input { height: 17px; width: 17px; }
+.sign_up_form button { border-radius: 4px; height: 50px; margin-bottom: 40px; }
+.sign_up_form .btn-log { height: 55px; }
+.sign_up_form .nav.nav-pills li { text-align: center; margin-right: 15px; width: 47%; }
+.sign_up_form .nav.nav-pills li:last-child { margin-right: 0px; }
+.sign_up_form li.nav-item .nav-link { background-color: transparent; border: 1px solid rgb(130, 180, 64); }
+.sign_up_form li.nav-item .nav-link.active { background-color: rgb(130, 180, 64); }
+
+/* Button Style */
+.btn { border-radius: 4px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; }
+.btn:active, .btn:focus, .btn:hover { outline: 0px; }
+.btn-thm { background-color: rgb(130, 180, 64); color: rgb(255, 255, 255); font-size: 16px; padding: 7px 30px; transition: all 0.3s ease 0s; }
+.btn-thm:active, .btn-thm:focus, .btn-thm:hover { background-color: transparent; border-color: rgb(130, 180, 64); color: rgb(130, 180, 64); }
+.btn-thm2 { background-color: rgb(0, 214, 100); color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-thm2:active, .btn-thm2:focus, .btn-thm2:hover { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); }
+.btn-thm3 { background-color: rgb(19, 180, 147); border: none; color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-thm3:active, .btn-thm3:focus, .btn-thm3:hover { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); }
+.btn-dark { background-color: rgb(48, 48, 48); border-color: rgb(48, 48, 48); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-dark:active, .btn-dark:focus, .btn-dark:hover { background-color: transparent; border-color: rgb(48, 48, 48); color: rgb(48, 48, 48); }
+.btn-yellow { background-color: rgb(240, 201, 0); border-color: rgb(240, 201, 0); color: rgb(51, 51, 51); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-yellow:active, .btn-yellow:focus, .btn-yellow:hover { color: rgb(51, 51, 51); }
+.btn-yellow:active, .btn-yellow:focus, .btn-yellow:hover { color: rgb(255, 255, 255); }
+.btn-white { background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 3px 0px; color: rgb(48, 48, 48); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-white:active, .btn-white:focus, .btn-white:hover { color: rgb(130, 180, 64); }
+.btn-gray { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-gray:active, .btn-gray:focus, .btn-gray:hover { background-color: transparent; border-color: rgb(118, 118, 118); color: rgb(118, 118, 118); }
+.btn-green { background-color: rgb(40, 185, 40); border-color: rgb(40, 185, 40); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-green:active, .btn-green:focus, .btn-green:hover { color: rgb(255, 255, 255); }
+.btn-blue { background-color: rgb(28, 50, 126); border-color: rgb(28, 50, 126); color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-blue:active, .btn-blue:focus, .btn-blue:hover { background-color: transparent; border-color: rgb(28, 50, 126); color: rgb(28, 50, 126); }
+.btn-transparent { background-color: transparent; border-color: rgb(130, 180, 64); color: rgb(130, 180, 64); font-size: 16px; border-radius: 4px; transition: all 0.3s ease 0s; }
+.btn-transparent:active, .btn-transparent:focus, .btn-transparent:hover { background-color: rgb(130, 180, 64); color: rgb(255, 255, 255); }
+.btn-transparent2 { background-color: transparent; color: rgb(69, 104, 220); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-transparent2:active, .btn-transparent2:focus, .btn-transparent2:hover { background: linear-gradient(60deg, rgb(69, 104, 220) 0px, rgb(123, 105, 199) 50%, rgb(176, 106, 179) 100%); color: rgb(255, 255, 255); }
+.btn-default { font-size: 14px; padding: 8px 15px; }

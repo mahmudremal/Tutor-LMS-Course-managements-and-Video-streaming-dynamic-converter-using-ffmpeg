@@ -19,16 +19,21 @@
 //you can add custom functions below this line:
 
 // Begin remove Divi Blog Module featured image crop
-function pa_blog_image_width($width) {
+
+
+add_filter( 'et_pb_blog_image_width', function($width) {
 	return '9999';
-}
-function pa_blog_image_height($height) {
+} );
+add_filter( 'et_pb_blog_image_height', function($height) {
 	return '9999';
-}
-add_filter( 'et_pb_blog_image_width', 'pa_blog_image_width' );
-add_filter( 'et_pb_blog_image_height', 'pa_blog_image_height' );
+} );
 // End remove Divi Blog Module featured image crop
 
 include_once( get_stylesheet_directory() . '/inc/class-assets.php' );
 new FWP_DIVI_CHILD_THEME();
-
+require_once( get_stylesheet_directory() . '/inc/class-authentication.php' );
+new FWP_DIVI_CHILD_THEME_AUTHENTICATION();
+if( is_admin() ) {
+	require_once( get_stylesheet_directory() . '/inc/class-metabox.php' );
+	new FWP_DIVI_CHILD_THEME_META_BOX();
+}
