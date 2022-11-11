@@ -1,5 +1,5 @@
 ( function ( $ ) {
-	class FUTUREWORDPRESS_COM_DIVI_CHILD {
+	class buyerRequestDetails {
 		constructor() {
       var config = siteConfig?.config ?? {
         playlist: {icon: true, title: true, download: true}, attachments: {column: 2, download: true}
@@ -594,5 +594,5 @@
     }
 	}
   // Execute functions
-  new FUTUREWORDPRESS_COM_DIVI_CHILD();
+  new buyerRequestDetails();
 } )( jQuery );
