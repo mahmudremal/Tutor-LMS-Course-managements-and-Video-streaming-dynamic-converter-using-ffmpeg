@@ -1,76 +1,428 @@
-
-/* Styling for product single page to force register */
-.fwp-body.fwp-single-product-hide .ppc-button-wrapper,
-.fwp-body.fwp-single-product-hide form.cart {
-  display: none;
-}
-
-
-
-/* Sing up model */
-.sign_up_modal::before { background-color: rgba(34, 34, 34, 0.9); inset: 0px; content: ""; position: absolute; }
-.modal-backdrop { display: none; }
-.sign_up_modal .modal-header { background-color: rgb(130, 180, 64); border-radius: 50%; border: none; height: 50px; position: absolute; right: -20px; text-align: center; top: -20px; width: 50px; z-index: 1; }
-.sign_up_modal .modal-header button.close { margin-top: -5px; margin-right: 0px; margin-left: 4px; opacity: 1; padding: 0px; }
-.sign_up_modal .modal-header button.close span { color: rgb(255, 255, 255); }
-.sign_up_tab li.nav-item { text-align: center; width: 50%; }
-.sign_up_tab li.nav-item .nav-link { background-color: rgb(242, 242, 242); height: 70px; line-height: 65px; margin: 0px; padding: 0px; }
-.sign_up_tab li.nav-item .nav-link.active { background-color: rgb(255, 255, 255); }
-
-
-/* singup model nav link */
-.sign_up_modal::before { background-color: rgba(34, 34, 34, 0.9); inset: 0px; content: ""; position: absolute; }
-.modal-backdrop { display: none; }
-.sign_up_modal .modal-header { background-color: rgb(130, 180, 64); border-radius: 50%; border: none; height: 50px; position: absolute; right: -20px; text-align: center; top: -20px; width: 50px; }
-.sign_up_modal .modal-header button.close { margin-top: -5px; margin-right: 0px; margin-left: 4px; opacity: 1; padding: 0px; }
-.sign_up_modal .modal-header button.close span { color: rgb(255, 255, 255); }
-.sign_up_tab li.nav-item { text-align: center; width: 50%; }
-.sign_up_tab li.nav-item .nav-link { background-color: rgb(242, 242, 242); height: 70px; line-height: 65px; margin: 0px; padding: 0px; }
-.sign_up_tab li.nav-item .nav-link.active { background-color: rgb(255, 255, 255); }
-/* singup model form settings */
-.login_form { background-color: rgb(255, 255, 255); padding: 40px 40px 0px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; border-radius: 4px; }
-.login_form .heading { margin-bottom: 40px; }
-.login_form .form-control { border-radius: 4px; color: rgb(127, 127, 127); height: 50px; margin-bottom: 20px; }
-.login_form .form-control:focus { box-shadow: none; }
-.login_form .form-check-input { height: 17px; width: 17px; }
-.login_form button { border-radius: 4px; height: 50px; margin-bottom: 40px; }
-.login_form .btn-log { height: 55px; }
-.sign_up_form { background-color: rgb(255, 255, 255); padding: 40px 40px 0px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; border-radius: 4px; }
-.sign_up_form .heading { margin-bottom: 40px; }
-.sign_up_form .form-control { border-radius: 4px; color: rgb(127, 127, 127); height: 50px; margin-bottom: 20px; }
-.sign_up_form .form-control:focus { box-shadow: none; }
-.sign_up_form .form-check-input { height: 17px; width: 17px; }
-.sign_up_form button { border-radius: 4px; height: 50px; margin-bottom: 40px; }
-.sign_up_form .btn-log { height: 55px; }
-.sign_up_form .nav.nav-pills li { text-align: center; margin-right: 15px; width: 47%; }
-.sign_up_form .nav.nav-pills li:last-child { margin-right: 0px; }
-.sign_up_form li.nav-item .nav-link { background-color: transparent; border: 1px solid rgb(130, 180, 64); }
-.sign_up_form li.nav-item .nav-link.active { background-color: rgb(130, 180, 64); }
-
-/* Button Style */
-.btn { border-radius: 4px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; }
-.btn:active, .btn:focus, .btn:hover { outline: 0px; }
-.btn-thm { background-color: rgb(130, 180, 64); color: rgb(255, 255, 255); font-size: 16px; padding: 7px 30px; transition: all 0.3s ease 0s; }
-.btn-thm:active, .btn-thm:focus, .btn-thm:hover { background-color: transparent; border-color: rgb(130, 180, 64); color: rgb(130, 180, 64); }
-.btn-thm2 { background-color: rgb(0, 214, 100); color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-thm2:active, .btn-thm2:focus, .btn-thm2:hover { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); }
-.btn-thm3 { background-color: rgb(19, 180, 147); border: none; color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-thm3:active, .btn-thm3:focus, .btn-thm3:hover { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); }
-.btn-dark { background-color: rgb(48, 48, 48); border-color: rgb(48, 48, 48); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-dark:active, .btn-dark:focus, .btn-dark:hover { background-color: transparent; border-color: rgb(48, 48, 48); color: rgb(48, 48, 48); }
-.btn-yellow { background-color: rgb(240, 201, 0); border-color: rgb(240, 201, 0); color: rgb(51, 51, 51); border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-yellow:active, .btn-yellow:focus, .btn-yellow:hover { color: rgb(51, 51, 51); }
-.btn-yellow:active, .btn-yellow:focus, .btn-yellow:hover { color: rgb(255, 255, 255); }
-.btn-white { background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 3px 0px; color: rgb(48, 48, 48); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-white:active, .btn-white:focus, .btn-white:hover { color: rgb(130, 180, 64); }
-.btn-gray { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-gray:active, .btn-gray:focus, .btn-gray:hover { background-color: transparent; border-color: rgb(118, 118, 118); color: rgb(118, 118, 118); }
-.btn-green { background-color: rgb(40, 185, 40); border-color: rgb(40, 185, 40); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-green:active, .btn-green:focus, .btn-green:hover { color: rgb(255, 255, 255); }
-.btn-blue { background-color: rgb(28, 50, 126); border-color: rgb(28, 50, 126); color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-blue:active, .btn-blue:focus, .btn-blue:hover { background-color: transparent; border-color: rgb(28, 50, 126); color: rgb(28, 50, 126); }
-.btn-transparent { background-color: transparent; border-color: rgb(130, 180, 64); color: rgb(130, 180, 64); font-size: 16px; border-radius: 4px; transition: all 0.3s ease 0s; }
-.btn-transparent:active, .btn-transparent:focus, .btn-transparent:hover { background-color: rgb(130, 180, 64); color: rgb(255, 255, 255); }
-.btn-transparent2 { background-color: transparent; color: rgb(69, 104, 220); border-radius: 0px; transition: all 0.3s ease 0s; }
-.btn-transparent2:active, .btn-transparent2:focus, .btn-transparent2:hover { background: linear-gradient(60deg, rgb(69, 104, 220) 0px, rgb(123, 105, 199) 50%, rgb(176, 106, 179) 100%); color: rgb(255, 255, 255); }
+
+/* Styling for product single page to force register */
+.fwp-body.fwp-single-product-hide .ppc-button-wrapper,
+.fwp-body.fwp-single-product-hide form.cart {
+  display: none;
+}
+
+
+
+/* Sing up model */
+.sign_up_modal::before { background-color: rgba(34, 34, 34, 0.9); inset: 0px; content: ""; position: absolute; }
+.modal-backdrop { display: none; }
+.sign_up_modal .modal-header { background-color: rgb(130, 180, 64); border-radius: 50%; border: none; height: 50px; position: absolute; right: -20px; text-align: center; top: -20px; width: 50px; z-index: 1; }
+.sign_up_modal .modal-header button.close { margin-top: -5px; margin-right: 0px; margin-left: 4px; opacity: 1; padding: 0px; }
+.sign_up_modal .modal-header button.close span { color: rgb(255, 255, 255); }
+.sign_up_tab li.nav-item { text-align: center; width: 50%; }
+.sign_up_tab li.nav-item .nav-link { background-color: rgb(242, 242, 242); height: 70px; line-height: 65px; margin: 0px; padding: 0px; }
+.sign_up_tab li.nav-item .nav-link.active { background-color: rgb(255, 255, 255); }
+
+
+/* singup model nav link */
+.sign_up_modal::before { background-color: rgba(34, 34, 34, 0.9); inset: 0px; content: ""; position: absolute; }
+.modal-backdrop { display: none; }
+.sign_up_modal .modal-header { background-color: rgb(130, 180, 64); border-radius: 50%; border: none; height: 50px; position: absolute; right: -20px; text-align: center; top: -20px; width: 50px; }
+.sign_up_modal .modal-header button.close { margin-top: -5px; margin-right: 0px; margin-left: 4px; opacity: 1; padding: 0px; }
+.sign_up_modal .modal-header button.close span { color: rgb(255, 255, 255); }
+.sign_up_tab li.nav-item { text-align: center; width: 50%; }
+.sign_up_tab li.nav-item .nav-link { background-color: rgb(242, 242, 242); height: 70px; line-height: 65px; margin: 0px; padding: 0px; }
+.sign_up_tab li.nav-item .nav-link.active { background-color: rgb(255, 255, 255); }
+/* singup model form settings */
+.login_form { background-color: rgb(255, 255, 255); padding: 40px 40px 0px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; border-radius: 4px; }
+.login_form .heading { margin-bottom: 40px; }
+.login_form .form-control { border-radius: 4px; color: rgb(127, 127, 127); height: 50px; margin-bottom: 20px; }
+.login_form .form-control:focus { box-shadow: none; }
+.login_form .form-check-input { height: 17px; width: 17px; }
+.login_form button { border-radius: 4px; height: 50px; margin-bottom: 40px; }
+.login_form .btn-log { height: 55px; }
+.sign_up_form { background-color: rgb(255, 255, 255); padding: 40px 40px 0px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; border-radius: 4px; }
+.sign_up_form .heading { margin-bottom: 40px; }
+.sign_up_form .form-control { border-radius: 4px; color: rgb(127, 127, 127); height: 50px; margin-bottom: 20px; }
+.sign_up_form .form-control:focus { box-shadow: none; }
+.sign_up_form .form-check-input { height: 17px; width: 17px; }
+.sign_up_form button { border-radius: 4px; height: 50px; margin-bottom: 40px; }
+.sign_up_form .btn-log { height: 55px; }
+.sign_up_form .nav.nav-pills li { text-align: center; margin-right: 15px; width: 47%; }
+.sign_up_form .nav.nav-pills li:last-child { margin-right: 0px; }
+.sign_up_form li.nav-item .nav-link { background-color: transparent; border: 1px solid rgb(130, 180, 64); }
+.sign_up_form li.nav-item .nav-link.active { background-color: rgb(130, 180, 64); }
+
+/* Button Style */
+.btn { border-radius: 4px; box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 4px 0px; }
+.btn:active, .btn:focus, .btn:hover { outline: 0px; }
+.btn-thm { background-color: rgb(130, 180, 64); color: rgb(255, 255, 255); font-size: 16px; padding: 7px 30px; transition: all 0.3s ease 0s; }
+.btn-thm:active, .btn-thm:focus, .btn-thm:hover { background-color: transparent; border-color: rgb(130, 180, 64); color: rgb(130, 180, 64); }
+.btn-thm2 { background-color: rgb(0, 214, 100); color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-thm2:active, .btn-thm2:focus, .btn-thm2:hover { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); }
+.btn-thm3 { background-color: rgb(19, 180, 147); border: none; color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-thm3:active, .btn-thm3:focus, .btn-thm3:hover { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); }
+.btn-dark { background-color: rgb(48, 48, 48); border-color: rgb(48, 48, 48); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-dark:active, .btn-dark:focus, .btn-dark:hover { background-color: transparent; border-color: rgb(48, 48, 48); color: rgb(48, 48, 48); }
+.btn-yellow { background-color: rgb(240, 201, 0); border-color: rgb(240, 201, 0); color: rgb(51, 51, 51); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-yellow:active, .btn-yellow:focus, .btn-yellow:hover { color: rgb(51, 51, 51); }
+.btn-yellow:active, .btn-yellow:focus, .btn-yellow:hover { color: rgb(255, 255, 255); }
+.btn-white { background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 3px 0px; color: rgb(48, 48, 48); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-white:active, .btn-white:focus, .btn-white:hover { color: rgb(130, 180, 64); }
+.btn-gray { background-color: rgb(180, 180, 180); border-color: rgb(180, 180, 180); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-gray:active, .btn-gray:focus, .btn-gray:hover { background-color: transparent; border-color: rgb(118, 118, 118); color: rgb(118, 118, 118); }
+.btn-green { background-color: rgb(40, 185, 40); border-color: rgb(40, 185, 40); color: rgb(255, 255, 255); font-size: 16px; border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-green:active, .btn-green:focus, .btn-green:hover { color: rgb(255, 255, 255); }
+.btn-blue { background-color: rgb(28, 50, 126); border-color: rgb(28, 50, 126); color: rgb(255, 255, 255); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-blue:active, .btn-blue:focus, .btn-blue:hover { background-color: transparent; border-color: rgb(28, 50, 126); color: rgb(28, 50, 126); }
+.btn-transparent { background-color: transparent; border-color: rgb(130, 180, 64); color: rgb(130, 180, 64); font-size: 16px; border-radius: 4px; transition: all 0.3s ease 0s; }
+.btn-transparent:active, .btn-transparent:focus, .btn-transparent:hover { background-color: rgb(130, 180, 64); color: rgb(255, 255, 255); }
+.btn-transparent2 { background-color: transparent; color: rgb(69, 104, 220); border-radius: 0px; transition: all 0.3s ease 0s; }
+.btn-transparent2:active, .btn-transparent2:focus, .btn-transparent2:hover { background: linear-gradient(60deg, rgb(69, 104, 220) 0px, rgb(123, 105, 199) 50%, rgb(176, 106, 179) 100%); color: rgb(255, 255, 255); }
 .btn-default { font-size: 14px; padding: 8px 15px; }
+
+
+
+
+
+.fwp-body.et-db #et-boc .et-l .et_pb_section {
+  padding: 7px 0;
+}
+/* Styling with some CSS issues like Cart, Wishlist buttons and like this kind of problems. */
+.fwp-body.woocommerce button.woosw-btn {
+  font-weight: 400;
+  font-size: .9rem;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border-width: 1px thin;
+}
+.fwp-body.woocommerce .summary button.woosw-btn {margin-bottom: 30px;}
+.fwp-body.woocommerce nav.woocommerce-pagination {
+  margin-bottom: 40px;
+}
+.fwp-body.woocommerce nav.woocommerce-pagination > ul.page-numbers {
+  border-radius: 5px;
+  box-shadow: 3px 2px 5px #eee;
+}
+.fwp-body.woocommerce nav.woocommerce-pagination .page-numbers li .page-numbers {
+  padding: 10px 15px;
+  transition: background .7s ease;
+}
+
+/* Tutor LMS CSS */
+.fwp-body .tutor-container, .fwp-body .tutor-container.course-archive-page {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.fwp-body .tutor-container .tutor-course-list-btn .tutor-btn:hover {
+  background: #2e313e;
+  text-decoration: none;
+}
+.fwp-body .tutor-container .tutor-course-list.tutor-grid .tutor-card.tutor-course-card .tutor-card-body .tutor-course-ratings,
+.fwp-body .tutor-container .tutor-course-list.tutor-grid .tutor-card.tutor-course-card .tutor-card-body .tutor-meta {
+  display: none;
+}
+
+/* Checkout page CSS */
+
+.fwp-body.woocommerce-checkout #main-content {
+  padding-bottom: 4rem;
+}
+.fwp-body.woocommerce-checkout #content-area #left-area {
+  width: 100%;
+  float: unset;
+  padding: unset;
+}
+.fwp-body.woocommerce-checkout #content-area #left-area + #sidebar {
+  display: none;
+  float: none;
+}
+.fwp-body.woocommerce-checkout #main-content .container:before {
+  content: none;
+}
+.fwp-body.woocommerce-checkout .woocommerce form.woocommerce-form-coupon {
+  position: relative;
+  margin-top: -35px;
+}
+.fwp-body.woocommerce-checkout .woocommerce form.woocommerce-form-coupon > p:not(.form-row) {
+  margin-bottom: 0;
+  width: 100%;
+}
+.fwp-body.woocommerce-checkout .woocommerce form.woocommerce-form-coupon > .form-row {
+  width: 50%;
+}
+.fwp-body.woocommerce-checkout .woocommerce form .form-row-wide,
+.fwp-body.woocommerce-checkout .woocommerce form .form-row .woocommerce-input-wrapper,
+.fwp-body.woocommerce-checkout .woocommerce form .form-row .woocommerce-input-wrapper .input-text,
+.fwp-body.woocommerce-checkout .woocommerce form.woocommerce-form-coupon .form-row .input-text {
+  width: 100%;
+  border-radius: 3px;
+}
+.fwp-body.woocommerce-checkout .woocommerce form .form-row .woocommerce-input-wrapper textarea.input-text {
+  display: block;
+  height: auto;
+  min-height: 250px;
+}
+.fwp-body.woocommerce-checkout .woocommerce form .form-row .woocommerce-input-wrapper .select2-container--default .select2-selection--single {
+  border-width: 0.5px;
+  padding: 2.5px 5px;
+  height: 35px;
+}
+.fwp-body.woocommerce-checkout .woocommerce form .form-row .woocommerce-input-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 5px;
+}
+.fwp-body.woocommerce-checkout.woocommerce-page .woocommerce .col2-set {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.fwp-body.woocommerce-checkout.woocommerce-page .woocommerce .col2-set > div {
+  flex: unset;
+  float: unset;
+  max-width: unset;
+}
+@media (max-width: 980px) {
+  .fwp-body.woocommerce-checkout.woocommerce-page .woocommerce .col2-set > div {
+    width: 100%;
+    min-width: 99%;
+    margin: auto;
+  }
+}
+@media (min-width: 980px) {
+  .fwp-body.woocommerce-checkout.woocommerce-page .woocommerce #order_review_heading {
+    margin-top: 3rem;
+  }
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method {
+  padding: 1em .5em;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input.input-radio {
+  height: 20px;width: 20px;margin-right: .5rem;position: relative;top: 3px;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method p {
+  margin-bottom: 10px;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method fieldset {
+  margin-top: .5em;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method fieldset .form-row {
+  margin-bottom: 0;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method fieldset .form-row label {
+  margin-bottom: 0;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method fieldset .form-row .stripe-card-group {
+  position: relative;
+  width: 100%;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method fieldset .form-row #stripe-exp-element,
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method fieldset .form-row #stripe-cvc-element {
+  width: inherit;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method .payment_method_ppcp-credit-card-gateway iframe#braintree-hosted-field-number {
+  max-height: 30px;
+}
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method .payment_method_ppcp-credit-card-gateway #ppcp-credit-card-gateway-card-number,
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method .payment_method_ppcp-credit-card-gateway #ppcp-credit-card-gateway-card-expiry,
+.fwp-body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method .payment_method_ppcp-credit-card-gateway #ppcp-credit-card-gateway-card-cvc {
+  max-height: 40px !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+}
+.fwp-body.woocommerce-checkout .woocommerce form #payment .form-row .input-checkbox {
+  height: 15px;
+  width: 15px;
+}
+
+
+
+
+.fwp-body.page-template-default.page.et_right_sidebar #left-area {
+  width: 100%;
+  padding-right: unset;
+}
+.fwp-body.page-template-default.page.et_right_sidebar #left-area .page #customer_login {
+  margin-right: 0;
+  padding-right: 0;
+}
+.fwp-body.page-template-default.page #customer_login > div {
+  max-width: unset;
+}
+.fwp-body.page-template-default.page.et_right_sidebar #main-content .container::before {
+  content: none;
+}
+.fwp-body.page-template-default.page.et_right_sidebar #sidebar {
+  display: none;
+}
+.fwp-body.page-template-default.page .woocommerce form .password-input {
+  width: -moz-available;
+  width: 100%;
+}
+.fwp-body.page-template-default.page .woocommerce form input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+  margin-right: 7.5px;
+}
+.fwp-body.page-template-default.page .woocommerce form .wp-element-button.woocommerce-form-login__submit {display: block;}
+
+.fwp-body .woocommerce .woocommerce-form-login .woocommerce-form-login__rememberme {
+  margin-right: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#et-main-area #main-content #content-area #left-area .main_title {
+  font-size: 30px;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul {
+  list-style: none;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li {
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 7px 0 7px 25px;
+  position: relative;
+  background: #ddd;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  transition: padding .7s ease;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li:before {
+  font-family: ETmodules;
+  content: "[";
+  font-size: 12px;
+  position: absolute;
+  right: unset;
+  left: 5px;
+  font-weight: 800;
+  width: 12px;
+}
+/* #et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li:before {
+  font-family: unset;
+  content: "";
+  height: 20px;
+  width: 20px;
+  background: url(assets/icons/dashboard.svg);
+} */
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li:hover,
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li.is-active {
+    background: none;
+    border: 1px solid #ddd;
+    padding-left: 35px;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation ul li a {
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #333;
+  text-decoration: none;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .woocommerce-MyAccount-navigation {
+  max-width: 300px;
+  margin: auto;
+}
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .col2-set.addresses .col-1,
+#et-main-area #main-content #content-area #left-area .entry-content .woocommerce .col2-set.addresses .col-2 {
+  max-width: unset;
+}
+.woocommerce-account .woocommerce-MyAccount-content > p:nth-child(2), .woocommerce-account .woocommerce-MyAccount-content > p:nth-child(3) {
+  display: none;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-dashboard-wrapper {
+  width: 100%;
+  padding: 30px 20px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-dashboard-wrapper .woocommerce-dashboard-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-dashboard-wrapper .woocommerce-dashboard-row .woo-single {
+  max-width: 200px;
+  max-height: 150px;
+  border: 1px solid #eee;
+  position: relative;
+  /* width: auto;
+  height: auto; */
+}
+
+/* .woocommerce-account .woocommerce-MyAccount-content .woocommerce-dashboard-wrapper .woocommerce-dashboard-row .woo-single .woo-single-image {
+  height: 100%;
+  width: 100%;
+} */
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-dashboard-wrapper .woocommerce-dashboard-row .woo-single .woo-single-base {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ee5526;
+  padding: 2px 10px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 20px;
+  height: 30px;
+  width: auto;
+  min-width: 30px;
+  line-height: 1.3;
+}
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-dashboard-wrapper .woocommerce-dashboard-row .woo-single .woo-single-image img {
+  max-width: 140px;
+  max-height: 200px;
+  width: 90%;
+  height: auto;
+  padding: 10px 10px;
+}
+
+
+.fwp-body.tutor-lms.body-front-page.fwp-only-certificate #page-container #top-header, 
+.fwp-body.tutor-lms.body-front-page.fwp-only-certificate #page-container #main-header {
+  display: none;
+}
+.fwp-body.tutor-lms.body-front-page.fwp-only-certificate .tutor-download-certificate {
+  padding: 3rem 2rem;
+  max-width: unset;
+  position: relative;
+}
+.fwp-body.tutor-lms.body-front-page.fwp-only-certificate .tutor-download-certificate .tutor-certificate-demo {
+  max-width: 1050px;
+  margin: auto;
+}
+/* .fwp-body.tutor-lms.body-front-page.fwp-only-certificate .tutor-download-certificate .tutor-certificate-demo #tutor-pro-certificate-preview {
+// 
+} */
+.fwp-body.tutor-lms.body-front-page.fwp-only-certificate .tutor-download-certificate .tutor-dc-button-group {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50vh);
+  position: fixed;
+}
+.fwp-body.tutor-lms.body-front-page.fwp-only-certificate .tutor-download-certificate .tutor-dc-certificate-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+/* .fwp-body.tutor-lms.body-front-page.fwp-only-certificate .tutor-download-certificate .tutor-dc-certificate-details .tutor-certificate-info {} */
+/* .tutor-info-issued-name {opacity: 0;}.tutor-info-issued-name.tutor-opacity-1 {opacity: 1;} */
