@@ -17,7 +17,8 @@ class FWP_DIVI_CHILD_THEME {
 		 * Actions.
 		 */
 		add_filter( 'body_class', [ $this, 'body_class' ], 10, 1 );
-    add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ], 10, 0 );
+    add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 10, 0 );
+    add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 10, 1 );
 		add_action( 'admin_init', [ $this, 'admin_init' ], 10, 0 );
 		add_action( 'init', [ $this, 'optionPage' ], 10, 0 );
 
@@ -63,10 +64,23 @@ class FWP_DIVI_CHILD_THEME {
 		
 		return array_merge( $classes, $class );
 	}
-  public function enqueue() {
+  public function wp_enqueue_scripts() {
     // wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
     // wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $this->filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
     // wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri() . '/js/scripts.js', [ 'jquery' ], $this->filemtime( get_stylesheet_directory() . '/js/scripts.js' ), true );
+  }
+  public function admin_enqueue_scripts( $hook ) {
+		// if( 'edit.php' != $hook ) {return;}
+    // wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $this->filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
+    wp_enqueue_script( 'fwp-project-divi-child', get_stylesheet_directory_uri() . '/js/backend.js', [ 'jquery' ], $this->filemtime( get_stylesheet_directory() . '/js/backend.js' ), true );
+		wp_localize_script( 'fwp-project-divi-child', 'fwpSeoJawssiteConfig', [
+			'ajaxUrl'								=> admin_url( 'admin-ajax.php' ),
+			'postUrl'								=> admin_url( 'post.php' ),
+			'ajax_nonce'						=> wp_create_nonce( 'fwp_seojaws_ajax_nonce' ),
+			'confirmAutoGenerate'		=> __( 'Are you sure yo want to generate lessons autometically? Press okay to continue, cancel to stop process.', 'domain' ),
+			'confirmAutoRemove'			=> __( 'You\'ve pressed CTRL + SHIFT + K. That meant you want to remove all of the lessons on currently visible topic.\nBefore we proceed, please make sure you\'re confirm what you\'ve done. This can\'t be undo.', 'domain' ),
+			'selectALesson'					=> __( 'Select a Lesson', 'domain' ),
+		] );
   }
   public function filemtime( $file ) {
     return ( file_exists( $file ) && ! is_dir( $file ) ) ? filemtime( $file ) : rand( 0, 999999 );
@@ -419,14 +433,14 @@ class FWP_DIVI_CHILD_THEME {
 			</div>
 			<div class="fwp-col-9">
 				<label class="fwp-switcher">
-					<input class="fwp-switcher-input" name="_fwp_course_status" type="checkbox" <?php checked( $course[ 'status' ], true ); ?> onchange="fwp_toggle_download_options( this.checked );">
+					<input class="fwp-switcher-input" name="_fwp_course_status" type="checkbox" <?php checked( $course[ 'status' ], true ); ?>>
 					<span class="fwp-switchercher-slider"></span>
 				</label>
 			</div>
 		</div>
 		<div class="<?php echo esc_attr( ( $course[ 'status' ] ) ? 'opened' : 'closed-i' ); ?>" id="fwp-is-opened">
 			<label for="fwp-certificate-link"><?php esc_html_e( 'Select course', 'fwp-divi-child-seojaws' ); ?></label>
-			<select name="fwp_certificate_link" id="fwp-certificate-link" class="postbox" onchange="fwp_custom_metabox_for_select_cource( value, this )">
+			<select name="fwp_certificate_link" id="fwp-certificate-link" class="postbox">
 				<?php
 				foreach( $options as $row ) {
 					?>
@@ -437,54 +451,6 @@ class FWP_DIVI_CHILD_THEME {
 			</select>
 			<input type="<?php echo esc_attr( ( $course[ 'status' ] ) ? 'text' : 'hidden' ); ?>" name="fwp-certificate-url" class="postbox" id="fwp-certificate-url" value="<?php echo esc_attr( $course[ 'url' ] ); ?>" onclick="this.select();" />
 		</div>
-		<script>
-			var fwp_toggle_download_options = function( val ) {
-				var id = document.getElementById( 'fwp-is-opened' );
-				if( val === true ) {
-					id.classList.add( 'opened' );
-				} else {
-					id.classList.remove( 'opened' );
-				}
-			};
-			var fwp_custom_metabox_for_select_cource = async function( val, e ) {
-				var id = document.getElementById( 'fwp-certificate-url' );id.type = 'text';id.value = "<?php echo esc_url( site_url() ); ?>/mycourses/download/<?php echo esc_attr( get_the_ID() ); ?>/" + val + "/";
-				var selectedText = e.options[e.selectedIndex].text;var select = document.getElementById( 'fwp_tutor_shortcode_select' ), option, node = document.createElement( 'select' );
-
-				if( ( 'clipboard' in navigator ) && ( 'writeText' in navigator.clipboard ) ) {navigator.clipboard.writeText( selectedText );}
-
-				jQuery.ajax( {
-					url: '<?php echo esc_url( admin_url( "admin-ajax.php" ) ); ?>',
-					type: "POST", // method type
-					data: { action: 'fwp_tutor_shortcode_select', url: val },
-					timeout: 20000,
-					dataType: "json",
-					// async: true,
-					success: function( json, textStatus, jqXHR ) {
-						select.setAttribute( 'data-path', selectedText );
-						if( json.success ) {
-							node.appendChild( select.options[0] );
-							json.data.forEach( function( e, i ) {
-								option = document.createElement( 'option' );option.value = e[1];option.setAttribute( 'data-icon', 'link' );option.innerText = e[1];node.appendChild( option );
-							} );
-							select.innerHTML = node.innerHTML;
-							// console.log( node );
-						} else {
-							console.log( [ json, textStatus, jqXHR ] );
-						}
-					},
-					error: function( jqXHR, textStatus, errorThrown ) {
-							console.log( {
-								jqXHR: jqXHR,
-								TestStatus: textStatus,
-								ErrorThrown: errorThrown
-							} );
-					},
-					// beforeSend: function (xhr, settings) {},
-					// dataFilter: function (data, type) {},
-					// complete: function (xhr, status) {},
-				} );
-			};
-		</script>
 		<?php
 		$this->stylesheet();
 	}
@@ -1210,7 +1176,10 @@ class FWP_DIVI_CHILD_THEME {
 			'course' => false
 		] );
 		if( ! $args[ 'course' ] ) {return;}
-		$scanSrc = FWP_COURSES_LESSON_ROOT . '/' . $args[ 'src' ];
+		if( ! empty( $args[ 'src' ] ) ) {
+			$args[ 'src' ] = str_replace( [ '-apostrophe-', '-dquatation-', '-3rdbracketsrt-', '-3rdbracketend-' ], [ "'", '"', '[', ']' ], $args[ 'src' ] );
+		}
+		$scanSrc = FWP_COURSES_LESSON_ROOT . '/' . urldecode( $args[ 'src' ] );
 		if( is_dir( $scanSrc ) ) :
 			$PLYR_JS = [];
 			$scanList = preg_grep('~\.(' . implode( '|', FWP_COURSES_ALLOWED_VIDEO_EXTENSIONS ) . ')$~', scandir( $scanSrc ) );
@@ -1291,13 +1260,16 @@ class FWP_DIVI_CHILD_THEME {
 			}
 
 			wp_enqueue_script( 'plyr-io-video-player', get_stylesheet_directory_uri() . '/js/scripts.js', [ 'jquery' ], $this->filemtime( get_stylesheet_directory() . '/js/scripts.js' ), true );
+			
+			ob_start();
+			
 			// foreach( $mainList as $v => $video ) {}
 			?>
 			<div class="fluid-width-video-wrapper">
 				<video controcster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="fwp-custom-video-player"></video>
 			</div>
 
-			<!-- <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" /> -->
+			<link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" />
 			<script src="https://cdn.plyr.io/3.7.2/plyr.js"></script>
 			<!-- <script src="https://cdn.plyr.io/3.7.2/plyr.polyfilled.js"></script> -->
 			<script>
@@ -1309,8 +1281,9 @@ class FWP_DIVI_CHILD_THEME {
 			</script>
 			<style>#tutor-course-spotlight-playlist .tutor-course-attachments [is-playing] .tutor-icon-play-line:before {content:"\e91d";}</style>
 
-			<!-- <script id="plyr-io-video-player" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/js/scripts.js?ver=' . $this->filemtime( get_stylesheet_directory() . '/js/scripts.js' ) ); ?>"></script> -->
+			<!-- <script id="plyr-io-video-player" src="<?php // echo esc_url( get_stylesheet_directory_uri() . '/js/scripts.js?ver=' . $this->filemtime( get_stylesheet_directory() . '/js/scripts.js' ) ); ?>"></script> -->
 			<?php
+			$html_content = ob_get_clean();
 			$lessonAttachments = [];
 			$attachments = preg_grep( '~\.(' . implode( '|', FWP_COURSES_ALLOWED_ATTACHMENTS_EXTENSIONS ) . ')$~', scandir( $scanSrc ) );
 			foreach( $attachments as $i => $item ) {
@@ -1341,12 +1314,14 @@ class FWP_DIVI_CHILD_THEME {
 					'attachments' => __( 'Attachments', 'fwp-divi-child-seojaws' ),
 					'lesson_playlist' => __( 'Lesson Playlist', 'fwp-divi-child-seojaws' ),
 					'lesson_attachments' => __( 'Lesson Attachments', 'fwp-divi-child-seojaws' ),
-					'size' => __( 'Size', 'fwp-divi-child-seojaws' )
+					'size' => __( 'Size', 'fwp-divi-child-seojaws' ),
+					'confirmautogenerate' => __( 'Are you sure yo want to generate lessons autometically? Press okay to continue, cancel to stop process.', 'fwp-divi-child-seojaws' ),
 				]
 			] );
 			
 		endif;
 		// wp_die();
+		return $html_content;
 	}
 	private function videoURL( $vidName, $vidExt, $size, $post_id ) {
 		$path = explode( '/lessons/', $vidName );
@@ -1429,14 +1404,22 @@ class FWP_DIVI_CHILD_THEME {
 
 							<div class="tutor-input-group tutor-mb-16 tutor-mt-12 tutor-d-block">
 								<div class="tutor-video-upload-wrap">
-									<select id="fwp_tutor_shortcode_select" name="fwp_tutor[lessons]" class="tutor-form-control tutor-select-icon-primary no-tutor-dropdown" onchange="fwp_tutor_shortcode_createfunction( value, this );" data-path="<?php echo esc_attr( urldecode( $courseMeta[ 'link' ] ) ); ?>">
-										<option value="link" data-icon="link"><?php esc_html_e( 'Select a Lesson', 'tutor' ); ?></option>
+									<select id="fwp_tutor_shortcode_select-topic" name="fwp_tutor[topics]" class="tutor-form-control tutor-select-icon-primary no-tutor-dropdown" data-path="<?php echo esc_attr( urldecode( $courseMeta[ 'link' ] ) ); ?>" data-course="<?php echo esc_attr( $post_id ); ?>">
+										<option value="link" data-icon="link"><?php esc_html_e( 'Select a Topic', 'tutor' ); ?></option>
 										<?php
 										foreach ( $courseLinks as $i => $link ) {
 												$selected = selected( $i, $currentCourse );
 												echo sprintf( '<option value="%s" %s data-icon="%s">%s</option>', $link[1], $selected, 'link', $link[1] );
 										}
 										?>
+									</select>
+								</div>
+							</div>
+
+							<div class="tutor-input-group tutor-mb-16 tutor-mt-12 tutor-d-block">
+								<div class="tutor-video-upload-wrap">
+									<select id="fwp_tutor_shortcode_select-lesson" name="fwp_tutor[lessons]" class="tutor-form-control tutor-select-icon-primary no-tutor-dropdown" data-path="" data-course="<?php echo esc_attr( $post_id ); ?>">
+										<option value="link" data-icon="link"><?php esc_html_e( 'Select a Lesson', 'tutor' ); ?></option>
 									</select>
 								</div>
 							</div>
@@ -1485,15 +1468,12 @@ class FWP_DIVI_CHILD_THEME {
 					this.innerHTML = text;
 				}, 2000 );
 			} );
-			function fwp_tutor_shortcode_createfunction( value, e ) {
-				var path = e.dataset.path;path = ( typeof path !== 'undefined' && path !== null ) ? path + '/' : '';
-				document.getElementById( 'fwp_tutor_shortcode_textarea' ).value = "[fwpcourselesson src='" + path + value + "' subtitle='srt' course='<?php echo esc_attr( $post_id ); ?>']";
-			}
 		</script>
 		<script>window.FWPCOURSES_LINKS = <?php echo json_encode( $courseLinks ); ?>;</script>
 		<style>body.tutor-screen-course-builder #tutor-course-content-builder-root .new-topic-btn-wrap {display: -webkit-inline-box;justify-content: space-between;}</style>
 		<style>
 			body.wp-admin.tutor-modal-open.fwp-model-scroll-enabled {overflow: auto;}#fwp-tutor-links-model.fwp-model-opened {display: block;z-index: 999999;}#fwp-tutor-links-model.fwp-model-minimize {height: 80px;width: 180px;overflow: hidden;top: 10px;right: 10px;left: auto;}#fwp-tutor-links-model.fwp-model-minimize .tutor-modal-overlay {display: none;}#fwp-tutor-links-model.fwp-model-minimize .tutor-modal-window {height: 50px;display: block;margin-top: 0;}#fwp-tutor-links-model.fwp-model-minimize .tutor-modal-window .tutor-modal-content {width: 150px;height: 55px;}#fwp-tutor-links-model.fwp-model-minimize .tutor-modal-window .tutor-modal-header {border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;transition: all .3s ease-in-out;}#fwp-tutor-links-model.fwp-model-minimize .tutor-modal-window .tutor-modal-body {visibility: hidden;opacity: 1;}#fwp-tutor-links-model.fwp-model-minimize .tutor-modal-window .tutor-modal-content .tutor-modal-header .tutor-modal-title {display: none;}#fwp-tutor-links-model.fwp-model-minimize .tutor-modal-window .tutor-modal-content .tutor-modal-header .tutor-model-header-button-group {justify-content: space-between;display: flex;width: 100%;}#fwp-tutor-links-model.fwp-model-minimize .tutor-modal-window .tutor-modal-content .tutor-modal-header .tutor-model-header-button-group .tutor-modal-close {margin-right: 0;}
+			select.tutor-form-control.is-loading, .tutor-form-select.is-loading {background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/icons/loading.svg' ); ?>');}
 		</style>
 		<?php
 	}

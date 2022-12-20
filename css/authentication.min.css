@@ -426,3 +426,15 @@
 }
 /* .fwp-body.tutor-lms.body-front-page.fwp-only-certificate .tutor-download-certificate .tutor-dc-certificate-details .tutor-certificate-info {} */
 /* .tutor-info-issued-name {opacity: 0;}.tutor-info-issued-name.tutor-opacity-1 {opacity: 1;} */
+.tutor-form-group #xs-social-login-container {
+  max-width: unset;
+  padding-bottom: 0;
+}
+.tutor-form-group #xs-social-login-container .xs-login {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tutor-form-group #xs-social-login-container .xs-login .xs-login__item {
+  padding: 6px;
+  padding-right: 12px;
+}

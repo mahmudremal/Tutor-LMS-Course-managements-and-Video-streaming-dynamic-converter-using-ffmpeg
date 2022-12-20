@@ -16,6 +16,9 @@ class FWP_DIVI_CHILD_THEME_AUTHENTICATION {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ], 10, 0 );
 		add_action( 'wp_footer', [ $this, 'popup' ], 10, 0 );
 		add_action( 'tutor_course/loop/excerpt', [ $this, 'tutorCourseLoopExcerpt' ], 10, 0 );
+		add_action( 'tutor/lesson/created', [ $this, 'tutor_lesson_created' ], 10, 1 );
+		add_action( 'tutor_course_builder_after_btn_group', [ $this, 'tutor_course_builder_after_btn_group' ], 10, 2 );
+		add_action( 'wp_ajax_fwp_project_seojaws_get_lessons', [ $this, 'fwp_project_seojaws_get_lessons' ], 10, 0 );
 
 		// add_action( 'woocommerce_account_dashboard', [ $this, 'woocommerce_account_dashboard' ], 10, 0 );
 		// add_action( 'woocommerce_before_account_navigation', [ $this, 'woocommerce_before_account_navigation' ], 10, 0 );
@@ -151,4 +154,195 @@ class FWP_DIVI_CHILD_THEME_AUTHENTICATION {
 		</div>
 		<?php
 	}
+	public function tutor_lesson_created( $lesson_id = false ) {
+		if( ! $lesson_id ) {return;}
+		global $wpdb;
+		$metaKeys = $wpdb->get_results( $wpdb->prepare(
+			"SELECT * FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key = %s;",
+			$lesson_id, '_video'
+		), ARRAY_A );
+		foreach( $metaKeys as $i => $meta ) {
+			$shortcode = $meta[ 'meta_value' ] = maybe_unserialize( $meta[ 'meta_value' ] );
+			if( isset( $shortcode[ 'source_shortcode' ] ) && substr( $shortcode[ 'source_shortcode' ], 0, 17 ) == '[fwpcourselesson ' ) {
+				// $meta[ 'meta_value' ][ 'source_shortcode' ] = substr( $meta[ 'meta_value' ][ 'source_shortcode' ], 1, -1 );
+				// $meta[ 'meta_value' ][ 'source_shortcode' ] = str_replace( [ '-apostrophe-', '-dquatation-', '-3rdbracketsrt-', '-3rdbracketend-' ], [ "'", '"', '[', ']' ], $meta[ 'meta_value' ][ 'source_shortcode' ] );
+				// $meta[ 'meta_value' ][ 'source_shortcode' ] = '[' . $meta[ 'meta_value' ][ 'source_shortcode' ] . ']';
+				// update_post_meta( $meta[ 'post_id' ], '_video', $meta[ 'meta_value' ] );
+				
+				$runtime = isset( $meta[ 'meta_value' ][ 'runtime' ] ) ? (array) $meta[ 'meta_value' ][ 'runtime' ] : [];
+				if( isset( $shortcode[ 'source_path' ] ) && ! empty( $shortcode[ 'source_path' ] ) ) {
+					$scanSrc = FWP_COURSES_LESSON_ROOT . '/' . $shortcode[ 'source_path' ];
+					if( is_dir( $scanSrc ) ) {
+						$scanList = (array) preg_grep('~\.(' . implode( '|', FWP_COURSES_ALLOWED_VIDEO_EXTENSIONS ) . ')$~', scandir( $scanSrc ) );$firstVideo = false;
+						foreach( $scanList as $videoRow ) {
+							if( ! $firstVideo ) {
+								$firstVideo = true;
+								$vidPath = $scanSrc . '/' . $videoRow;
+								$meta[ 'meta_value' ][ 'scanList' ] = $scanList;
+								if( ! in_array( $videoRow, [ '.', '..', '' ] ) && ! is_dir( $vidPath ) && file_exists( $vidPath ) ) {
+									// $videoInfo = $this->_get_video_attributes( $vidPath );
+									$command = '/usr/bin/ffmpeg -i "' . $vidPath . '" 2>&1 | grep -o -P "(?<=Duration: ).*?(?=,)"';
+									$output = shell_exec($command);
+									$output = str_replace( [ "\n", '.', ',' ], [ '', ':', '' ], $output );
+									$output = explode( ':', $output );
+									$videoInfo = [
+										// 'src'				=> $vidPath,
+										'hours'			=> isset( $output[0] ) ? $output[0] : 00,
+										'minutes'		=> isset( $output[1] ) ? $output[1] : 00,
+										'seconds'		=> isset( $output[2] ) ? $output[2] : 00,
+										'milisec'		=> isset( $output[3] ) ? $output[3] : 00
+									];
+									// $meta[ 'meta_value' ][ 'videoInfo' ] = $videoInfo;
+									$runtime = $videoInfo;
+								}
+							}
+						}
+						$meta[ 'meta_value' ][ 'runtime' ] = $runtime;
+						update_post_meta( $meta[ 'post_id' ], '_video', $meta[ 'meta_value' ] );
+					}
+				}
+				// wp_send_json_success( $meta, 200 );
+			// } else {
+			// 	wp_send_json_error( $shortcode, 300 );
+			}
+		}
+	}
+	public function _get_video_attributes( $video ) {
+		$codec = '';$width = 0;$height = 0; $hours = 0;$mins = 0;$secs = 0;$ms = 0;
+		// /usr/bin/ffmpeg -i '20 [Ideas] Conducting A Brain Dump.mp4' 2>&1 | grep Duration | awk '{print $2}'
+		// Will return like this 00:01:09.17,
+		// /usr/bin/ffmpeg -i '20 [Ideas] Conducting A Brain Dump.mp4' 2>&1 | grep -o -P "(?<=Duration: ).*?(?=,)"
+		// Will return like this 00:01:09.17
+		$command = '/usr/bin/ffmpeg -i ' . $video . ' -vstats 2>&1';
+    $output = shell_exec($command);
+
+    $regex_sizes = "/Video: ([^,]*), ([^,]*), ([0-9]{1,4})x([0-9]{1,4})/"; // or : $regex_sizes = "/Video: ([^\r\n]*), ([^,]*), ([0-9]{1,4})x([0-9]{1,4})/"; (code from @1owk3y)
+    if( preg_match( $regex_sizes, $output, $regs ) ) {
+        $codec = $regs[1] ? $regs[1] : null;
+        $width = $regs[3] ? $regs[3] : 00;
+        $height = $regs[4] ? $regs[4] : 00;
+    }
+
+    $regex_duration = "/Duration: ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}).([0-9]{1,2})/";
+    if( preg_match( $regex_duration, $output, $regs ) ) {
+        $hours = $regs[1] ? $regs[1] : 00;
+        $mins = $regs[2] ? $regs[2] : 00;
+        $secs = $regs[3] ? $regs[3] : 00;
+        $ms = $regs[4] ? $regs[4] : 00;
+    }
+
+    return array(
+			// 'codec'			=> $codec,
+			'width'			=> $width,
+			'height'		=> $height,
+			'hours'			=> $hours,
+			'minutes'		=> $mins,
+			'seconds'		=> $secs,
+			'ms'				=> $ms,
+			// 'output'		=> $output
+    );
+	}
+	public function tutor_course_builder_after_btn_group( $topic_id, $course_id ) {
+		?>
+		<button class="tutor-btn tutor-btn-outline-primary tutor-btn-sm tutor-fwp-generate-autometically-btn" data-topic-id="<?php echo $topic_id; ?>" data-course-id="<?php echo $course_id; ?>" title="<?php esc_attr_e( 'To delete all lessons autometically, press `CTRL + SHIFT + K`', 'domain' ); ?>">
+			<i class="tutor-icon-plus-square tutor-mr-8"></i>
+			<?php esc_html_e('Auto Generate', 'domain'); ?>
+		</button>
+		<?php
+	}
+	public function fwp_project_seojaws_get_lessons() {
+		if( isset( $_POST[ 'topic_path' ] ) ) {
+			$scanList = $this->listAllFiles( FWP_COURSES_LESSON_ROOT . '/' . $_POST[ 'topic_path' ], true );
+			$sortedList = [];
+			foreach( $scanList as $i => $item ) {
+				$args = explode( '/', $item );
+				$sortedList[] = end( $args );
+			}
+			wp_send_json_success( $sortedList, 200 );
+		} else {
+			wp_send_json_error( __( 'Not found', 'domain' ), 400 );
+		}
+	}
+
+
+	/**
+	 * Additional Functions.
+	 */
+	public function listAllFiles( $dir, $dironly = false ) {
+		$array = array_diff(scandir($dir), array('.', '..'));
+		$sorted = [];
+		foreach( $array as &$item ) {
+			$item = $dir . DIRECTORY_SEPARATOR . $item;
+		}
+		unset($item);
+		foreach( $array as $item ) {
+			if( $dironly ) {
+				if( is_dir( $item ) ) {
+					$sorted[] = $item;
+				}
+			} else {
+				if( is_dir($item) ) {
+					$array = array_merge($array, $this->listAllFiles($item . DIRECTORY_SEPARATOR) );
+				}
+			}
+		}
+		return ( $dironly ) ? $sorted : $array;
+	}
+	public function moveFiles( $list ) {
+		foreach( $list as $args ) {
+			$file = $args[ 'basename' ] . '.mp4';
+			if( file_exists( $file )&& ! is_dir( $file ) ) {
+				is_dir( $args[ 'basename' ] ) || wp_mkdir_p( $args[ 'basename' ] ); // mkdir( $args[ 'basename' ], 0777, true );
+				rename( $file, $args[ 'basename' ] . DIRECTORY_SEPARATOR . $file);
+			}
+			foreach( $args[ 'relatives' ] as $file ) {
+				rename( $file, $args[ 'basename' ] . DIRECTORY_SEPARATOR . $file);
+			}
+		}
+	}
+	public function getLists() {
+		$files = glob( "*" );$list = [];
+		foreach( $files as $file ) {
+			$basename = pathinfo( $file, PATHINFO_FILENAME );
+			if( ! in_array( $file, [ '.', '..' ] ) && is_dir( $basename ) ) {
+				$args = [
+					'basename'	=> $basename,
+					'relatives'	=> [],
+					'subdir'	=> is_dir( $basename ) ? $this->listAllFiles( $basename ) : []
+				];
+				foreach( [ 'srt', 'vtt' ] as $ext ) {
+					foreach( [ 'en' ] as $lan ) {
+						$relative = $basename . '.' . $lan . '.' . $ext;
+						if( file_exists( $relative ) ) {
+							$args[ 'relatives' ][] = $relative;
+						}
+					}
+				}
+				$list[] = $args;
+			}
+		}
+		return $list;
+	}
+	public function getVideoInfo( $files ) {
+		foreach( $files as $i => $row ) {
+			// if( $row[ 'basename' ] == '01 Welcome' ) {
+				$filePath = __DIR__ . '/' . $row[ 'subdir' ]['4'];
+				$command = '/usr/bin/ffmpeg -i "' . $row[ 'subdir' ]['4'] . '" 2>&1 | grep -o -P "(?<=Duration: ).*?(?=,)"';
+				$output = shell_exec($command);
+				// print_r( $filePath . "\n" );
+				$output = str_replace( [ "\n", '.', ',' ], [ '', ':', '' ], $output );
+				$output = explode( ':', $output );
+				$videoInfo = [
+					'hours'			=> isset( $output[0] ) ? $output[0] : 00,
+					'minutes'		=> isset( $output[1] ) ? $output[1] : 00,
+					'seconds'		=> isset( $output[2] ) ? $output[2] : 00,
+					'milisec'		=> isset( $output[3] ) ? $output[3] : 00
+				];
+				$row['videoInfo'] = $videoInfo;
+				$files[ $i ] = $row;
+			// }
+		}
+		return $files;
+	}
+	
 }
